@@ -10,6 +10,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
     private int mCount = 0;
     private TextView mShowCount;
@@ -21,19 +23,24 @@ public class MainActivity extends AppCompatActivity {
         mShowCount = (TextView) findViewById(R.id.show_count);
 
 
+
         if(savedInstanceState !=null)
         {
             Log.d(TAG,"savedInstanceState is not null");
             mCount = savedInstanceState.getInt("mCount");
             Log.d(TAG,"count"+mCount);
             mShowCount.setText(Integer.toString(mCount));
-
         }
 
 
 
     }
 
+    public void makeZero(View view)
+    {
+        mCount = 0;
+        mShowCount.setText(Integer.toString(mCount));
+    }
     public void showToast(View view) {
         Toast toast = Toast.makeText(this, R.string.toast_message,Toast.LENGTH_SHORT);
         toast.show();
