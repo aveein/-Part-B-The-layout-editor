@@ -1,9 +1,11 @@
 package com.example.myapplication;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,14 +17,14 @@ import com.example.myapplication.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
     private int mCount = 0;
     private TextView mShowCount;
+    private Button countButton;
+    private Button zeroButton;
     public static final String TAG = MainActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mShowCount = (TextView) findViewById(R.id.show_count);
-
-
 
         if(savedInstanceState !=null)
         {
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     {
         mCount = 0;
         mShowCount.setText(Integer.toString(mCount));
+        zeroButton = (Button) findViewById(R.id.button_zero);
+        zeroButton.setBackgroundColor(Color.GRAY);
     }
     public void showToast(View view) {
         Toast toast = Toast.makeText(this, R.string.toast_message,Toast.LENGTH_SHORT);
@@ -48,9 +52,22 @@ public class MainActivity extends AppCompatActivity {
 
     public void countUp(View view) {
         mCount++;
+        zeroButton = (Button) findViewById(R.id.button_zero);
+        zeroButton.setBackgroundColor(Color.MAGENTA);
         if(mShowCount != null)
         {
             mShowCount.setText(Integer.toString(mCount));
+        }
+        countButton = (Button) findViewById(R.id.button_count);
+
+
+        if(mCount%2 != 0)
+        {
+            countButton.setBackgroundColor(Color.GREEN);
+        }
+        else
+        {
+            countButton.setBackgroundColor(Color.BLUE);
         }
     }
     @Override
